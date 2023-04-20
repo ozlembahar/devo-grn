@@ -4,4 +4,4 @@ data/dpn.vnc.domain.labelled.rds
 data/expression_mat.csv
 data/motifs-v8-nr.flybase-m0.001-o0.0.tbl
 .DS_Store
-results/*
+notebooks/results/*
