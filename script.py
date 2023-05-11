@@ -19,7 +19,6 @@ from datetime import datetime
 if __name__ == '__main__':
     
     ex_matrix = pd.read_csv("./data/expression_mat.csv", index_col=0)  # load count matrix 
-    ex_matrix=ex_matrix.iloc[1:100,1:500]
 
     tf_names = load_tf_names("./data/allTFs_dmel.txt") # Derive list of Transcription Factors(TF) for Drosophila
 
@@ -33,7 +32,7 @@ if __name__ == '__main__':
 
     startTime = datetime.now()
     
-    n = 2  # TODO: decide on n based on computational resources 
+    n = 2  
     all_results = [None] * n
     for i in range(0, n): 
         run_num = i+1
