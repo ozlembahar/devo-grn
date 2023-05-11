@@ -7,3 +7,5 @@ data/SeuratProject.h5Seurat
 data/cell_type.csv
 .DS_Store
 notebooks/results/*
+results/
+time.txt
