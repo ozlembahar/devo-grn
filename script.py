@@ -31,8 +31,7 @@ if __name__ == '__main__':
         os.mkdir("results")
 
     startTime = datetime.now()
-    
-    n = 2  
+    n = 10 # TO DO: make sure seeds are different    
     all_results = [None] * n
     for i in range(0, n): 
         run_num = i+1
