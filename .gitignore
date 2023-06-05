@@ -9,3 +9,4 @@ data/cell_type.csv
 notebooks/results/*
 results/
 time.txt
+results_test_run/
