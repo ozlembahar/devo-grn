@@ -31,7 +31,7 @@ if __name__ == '__main__':
         os.mkdir("results")
 
     startTime = datetime.now()
-    n = 10 # TO DO: make sure seeds are different    
+    n = 50 
     all_results = [None] * n
     for i in range(0, n): 
         run_num = i+1
@@ -39,6 +39,7 @@ if __name__ == '__main__':
 
         """ phase 1 - GRN inference, generation of co-expression modules """
         adjacencies = grnboost2(ex_matrix, tf_names, verbose=True) # adjacencies table of tf, target and importance weight
+        # modules = list(modules_from_adjacencies(adjacencies, ex_matrix))
         modules = list(modules_from_adjacencies(adjacencies, ex_matrix)) # module generation - candidate regulons from TF-target gene interactions 
         # save to files:
         adjacencies.to_csv(f"results/run_{run_num}/adjacencies.csv", index=False, sep='\t')
@@ -56,7 +57,7 @@ if __name__ == '__main__':
         """ phase 4 - cellular enrichment """
         auc_mtx = aucell(ex_matrix, regulons, num_workers=1)  # Calculate enrichment of gene signatures for single cells. # TODO: change num_workers
         auc_mtx.to_csv(f"results/run_{run_num}/AUCell_mat.csv")
-        # auc_mtx.to_pickle(f"results/results_{i+1}.pkl")# pickle results to results/ folder for later analysis
+        auc_mtx.to_pickle(f"results/results_{run_num}.pkl")# pickle results to results/ folder for later analysis
         # AUCell returns A dataframe with the AUCs (n_cells x n_modules).
 
         types_df = pd.read_csv("./data/cell_type.csv", index_col=0) 

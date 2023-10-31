@@ -1,10 +1,3 @@
-data/allTFs_dmel.txt
-data/dm6-5kb-upstream-full-tx-11species.mc8nr.genes_vs_motifs.rankings.feather
-data/dpn.vnc.domain.labelled.rds
-data/expression_mat.csv
-data/motifs-v8-nr.flybase-m0.001-o0.0.tbl
-data/SeuratProject.h5Seurat
-data/cell_type.csv
 .DS_Store
 notebooks/results/*
 results/
@@ -12,3 +5,6 @@ time.txt
 results_test_run/
 my_notes.pptx
 ~$my_notes.pptx
+data/*
+results/*
+figures/*
