@@ -1,0 +1,29 @@
+Avatar (exact exit probs)
+
+Parameters
+  Runs,1000
+  Expansion #states limit,10000
+  Rewiring #states limit,1000
+  Keep transients,true
+  Min transient size,200
+  Keep oracles,true
+  Tau,3
+  Min #states SCC to rewire,4
+  Max depth,1000000
+
+No perturbations applied
+No reductions applied
+Time,0.246,secs
+
+Stable states
+,Egfr,pGro,Wg,Hh,Dr,ind,vnd,en,wg,gsb,svp,ac,NB7_4,NB7_1,NB5_6,NB5_3,NB5_2,NB6_2,Ptc,Ci_act,Ci_rep,Fz,Smo,Arm,Pan,Rl,Pnt,Gro,hh,hkb,prob
+SS1,0,1,1,1,0,1,0,1,0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,1,1,0,0,0,1,0,0.11400
+SS2,1,1,1,1,0,0,1,1,0,1,1,1,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,0,0.09900
+SS3,1,1,1,1,0,1,0,1,0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,0,1,0,0.06800
+SS4,0,0,1,0,1,0,0,1,0,0,1,1,1,0,0,0,0,0,1,0,0,1,0,1,1,0,0,1,1,0,0.17300
+SS5,0,0,1,1,1,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,0,0.06300
+SS6,0,1,1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,1,1,0.30000
+SS7,1,1,1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,0,1,1,0.08900
+SS8,1,1,1,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,0,1,1,0.09400
+
+,Successful runs,1000
