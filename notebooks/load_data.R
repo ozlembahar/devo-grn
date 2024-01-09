@@ -4,6 +4,7 @@ library(Seurat)
 library(Matrix)
 
 sdata <- LoadH5Seurat("./data/SeuratProject.h5Seurat")
+# RNA@conutts: raw, RNA@data: normalized 
 # # counts_df <- sdata@assays$RNA@counts %>% as.matrix %>% t %>% as.data.frame
 
 # # write.csv(counts_df, "data/expression_mat.csv", row.names = TRUE)
