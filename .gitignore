@@ -9,3 +9,9 @@ data/*
 results/*
 figures/*
 notebooks/BooleanModel/perturbations
+notebooks/catboost_info/catboost_training.json
+notebooks/catboost_info/test/events.out.tfevents
+notebooks/catboost_info/learn/events.out.tfevents
+notebooks/catboost_info/time_left.tsv
+notebooks/catboost_info/test_error.tsv
+notebooks/catboost_info/learn_error.tsv
