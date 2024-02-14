@@ -15,3 +15,9 @@ notebooks/catboost_info/learn/events.out.tfevents
 notebooks/catboost_info/time_left.tsv
 notebooks/catboost_info/test_error.tsv
 notebooks/catboost_info/learn_error.tsv
+notebooks/catboost_info/fold-0/catboost_training.json
+notebooks/catboost_info/fold-0/learn_error.tsv
+notebooks/catboost_info/fold-0/test_error.tsv
+notebooks/catboost_info/fold-0/time_left.tsv
+notebooks/catboost_info/fold-0/learn/events.out.tfevents
+notebooks/catboost_info/fold-0/test/events.out.tfevents
