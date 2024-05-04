@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: thesis_main.aux
+A level-1 auxiliary file: chapters/0_0-titlepage.aux
+A level-1 auxiliary file: chapters/0_1-declaration.aux
+A level-1 auxiliary file: chapters/0_2-abstract.aux
+A level-1 auxiliary file: chapters/1-introduction.aux
+A level-1 auxiliary file: chapters/2-relatedwork.aux
+A level-1 auxiliary file: chapters/3-background.aux
+A level-1 auxiliary file: chapters/4-methodology.aux
+A level-1 auxiliary file: chapters/5-results.aux
+A level-1 auxiliary file: chapters/6-conclusions.aux
+A level-1 auxiliary file: chapters/7-acknowledgments.aux
+The style file: ieeetr.bst
+Database file #1: bib/biological_background.bib
+Database file #2: bib/theoretical_background.bib
+Database file #3: bib/methods.bib
+You've used 48 entries,
+            1876 wiz_defined-function locations,
+            802 strings with 15000 characters,
+and the built_in function-call counts, 16972 in all, are:
+= -- 1728
+> -- 751
+< -- 0
++ -- 269
+- -- 221
+* -- 1276
+:= -- 2356
+add.period$ -- 49
+call.type$ -- 48
+change.case$ -- 47
+chr.to.int$ -- 0
+cite$ -- 48
+duplicate$ -- 834
+empty$ -- 1383
+format.name$ -- 221
+if$ -- 4128
+int.to.chr$ -- 0
+int.to.str$ -- 48
+missing$ -- 48
+newline$ -- 148
+num.names$ -- 48
+pop$ -- 76
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 715
+stack$ -- 0
+substring$ -- 1345
+swap$ -- 457
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 164
+width$ -- 50
+write$ -- 513

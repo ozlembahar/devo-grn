@@ -1,0 +1,54 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Research Structure}{1}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Related Work}{3}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Background}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Central Nervous System Development in \textit {Drosophila} melanogaster}{5}{section.3.1}%
+\contentsline {subsubsection}{\nonumberline Neuroblasts Formation and Specification in the VNC During Neurogenesis}{5}{subsubsection*.5}%
+\contentsline {subsubsection}{\nonumberline Neuroectoderm Patterning}{5}{subsubsection*.7}%
+\contentsline {subsubsection}{\nonumberline Signaling Pathways}{6}{subsubsection*.9}%
+\contentsline {subsubsection}{\nonumberline Segmentation Genes}{6}{subsubsection*.11}%
+\contentsline {subsubsection}{\nonumberline Neuroblasts Nomenclature}{7}{subsubsection*.13}%
+\contentsline {section}{\numberline {3.2}Gene Regulatory Networks}{7}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Logical Modeling of Gene Regulatory Networks}{8}{subsection.3.2.1}%
+\contentsline {subsubsection}{\nonumberline Formalism of GRNs logical modeling}{9}{subsubsection*.15}%
+\contentsline {subsubsection}{\nonumberline Logical Model Definition}{9}{subsubsection*.17}%
+\contentsline {subsubsection}{\nonumberline Regulatory Graph}{10}{subsubsection*.19}%
+\contentsline {subsubsection}{\nonumberline Logical Model Dynamics}{10}{subsubsection*.21}%
+\contentsline {subsubsection}{\nonumberline Synchronous vs Asynchronous Updating Schemes}{10}{subsubsection*.23}%
+\contentsline {subsubsection}{\nonumberline Related Work}{11}{subsubsection*.25}%
+\contentsline {subsection}{\numberline {3.2.2}Gene Regulatory Network Inference from Single-Cell RNA-seq Data}{11}{subsection.3.2.2}%
+\contentsline {subsubsection}{\nonumberline Methods for inferring GRNs from Bulk Transcriptomics Data}{11}{subsubsection*.27}%
+\contentsline {subsubsection}{\nonumberline Current Methods for inferring GRNs Single Cell Transcriptomics Data}{12}{subsubsection*.29}%
+\contentsline {chapter}{\numberline {4}Methodology}{15}{chapter.4}%
+\contentsline {subsubsection}{\nonumberline Single-cell RNA-sequencing Dataset}{15}{subsubsection*.31}%
+\contentsline {section}{\numberline {4.1}GRN inference from scRNA-seq Dataset}{15}{section.4.1}%
+\contentsline {subsubsection}{\nonumberline SCENIC workflow}{15}{subsubsection*.33}%
+\contentsline {subsubsection}{\nonumberline Additional input used in the SCENIC workflow}{16}{subsubsection*.35}%
+\contentsline {subsubsection}{\nonumberline Multiple iterations}{16}{subsubsection*.37}%
+\contentsline {subsubsection}{\nonumberline Cellular enrichment clustering and visualisation in heatmaps}{17}{subsubsection*.40}%
+\contentsline {section}{\numberline {4.2}GRN Visualization}{18}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Boolean Model Analysis}{18}{section.4.3}%
+\contentsline {subsubsection}{\nonumberline Boolean model of signaling mechanism if early Drosophila nervous system development}{18}{subsubsection*.42}%
+\contentsline {subsection}{\numberline {4.3.1}Stable state analysis}{18}{subsection.4.3.1}%
+\contentsline {subsubsection}{\nonumberline Correlation of Variables}{19}{subsubsection*.45}%
+\contentsline {subsubsection}{\nonumberline Perturbation Analysis}{19}{subsubsection*.47}%
+\contentsline {section}{\numberline {4.4}Boolean Model Extension with GRN Inferred from Single Cell Sequencing Data}{19}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Results}{21}{chapter.5}%
+\contentsline {subsubsection}{\nonumberline scRNA-seq dataset}{21}{subsubsection*.49}%
+\contentsline {section}{\numberline {5.1}SCENIC Workflow}{21}{section.5.1}%
+\contentsline {subsubsection}{\nonumberline Inferring a GRN}{21}{subsubsection*.52}%
+\contentsline {subsection}{\numberline {5.1.1}Cellular Enrichment Score Clustering}{22}{subsection.5.1.1}%
+\contentsline {subsubsection}{\nonumberline AUCell score clustering}{22}{subsubsection*.56}%
+\contentsline {subsubsection}{\nonumberline AUCell score clustering of most repetitive TFs}{23}{subsubsection*.59}%
+\contentsline {subsubsection}{\nonumberline AUCell score clustering with binarization}{23}{subsubsection*.62}%
+\contentsline {subsubsection}{\nonumberline AUCell score clustering grouped by cell type}{23}{subsubsection*.65}%
+\contentsline {subsection}{\numberline {5.1.2}Cytoscape GRN Visualization}{28}{subsection.5.1.2}%
+\contentsline {subsubsection}{\nonumberline Core TF-Target couples GRN}{28}{subsubsection*.68}%
+\contentsline {subsubsection}{\nonumberline Most Repetitive TFs, with all targets GRN}{28}{subsubsection*.70}%
+\contentsline {section}{\numberline {5.2}Boolean Model Analysis}{28}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Boolean Model Extension with GRN Inferred from Single Cell Sequencing Data}{28}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Conclusion}{29}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Acknowledgments}{31}{chapter.7}%
+\contentsline {chapter}{Bibliography}{32}{chapter.7}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
