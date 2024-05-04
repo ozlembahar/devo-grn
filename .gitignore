@@ -21,3 +21,9 @@ notebooks/catboost_info/fold-0/test_error.tsv
 notebooks/catboost_info/fold-0/time_left.tsv
 notebooks/catboost_info/fold-0/learn/events.out.tfevents
 notebooks/catboost_info/fold-0/test/events.out.tfevents
+.Rproj.user
+.RData
+.Rhistory
+devo-grn.Rproj
+.vscode/settings.json
+logs/*
