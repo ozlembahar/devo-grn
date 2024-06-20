@@ -28,10 +28,5 @@ devo-grn.Rproj
 .vscode/settings.json
 logs/*
 PEDL_extractions/*
-Thesis_Latex/setup.tex
-Thesis_Latex/Makefile
-notebooks/BooleanModel/stg.png
-notebooks/processing/PEDL.ipynb
-notebooks/processing/PEDL_results.sh
-Thesis/~$esis General structure.docx
-Thesis_Latex/chapters/Makefile
+Thesis_Latex
+
