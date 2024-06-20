@@ -31,3 +31,14 @@ PEDL_extractions/*
 Thesis_Latex
 Thesis_Latex/*
 
+Thesis_Latex/thesis_main.aux
+Thesis_Latex/thesis_main.log
+Thesis_Latex/thesis_main.pdf
+Thesis_Latex/thesis_main.synctex.gz
+Thesis_Latex/thesis_main.toc
+Thesis_Latex/chapters/3-background.aux
+Thesis_Latex/chapters/3-background.tex
+Thesis_Latex/chapters/4-methodology.aux
+Thesis_Latex/chapters/4-methodology.tex
+Thesis_Latex/chapters/5-results.aux
+Thesis_Latex/chapters/5-results.tex
