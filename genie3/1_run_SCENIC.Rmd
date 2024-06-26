@@ -1,0 +1,54 @@
+---
+title: "runSCENIC"
+author: "Özlem Bahar"
+date: "8/16/2022"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Build the gene regulatory network
+1. Get co-expression modules 
+2. Get regulons (with RcisTarget):TF motif analysis
+
+Identify cell states:
+3. Score GRN (regulons) in the cells (with AUCell)
+4. Cluster cells according to the GRN activity
+
+```{r}
+require(Seurat)
+vnc_seurat<- readRDS(file="processed_data/dpn.vnc.domain.labelled.rds")
+
+DefaultAssay(vnc_seurat) <- 'RNA'
+vnc_seurat <- NormalizeData(vnc_seurat)
+exprMat <- vnc_seurat@assays$RNA@data
+```
+
+
+```{r}
+library(SCENIC)
+require(miceadds)
+scenicOptions <- readRDS("int/scenicOptions.Rds")
+
+
+scenicOptions@settings$verbose <- TRUE
+scenicOptions@settings$nCores <- 3
+scenicOptions@settings$seed <- 123
+
+scenicOptions <- runSCENIC_1_coexNetwork2modules(scenicOptions)
+scenicOptions <- runSCENIC_2_createRegulons(scenicOptions)
+scenicOptions <- runSCENIC_3_scoreCells(scenicOptions, exprMat)
+
+saveRDS(scenicOptions, file="int/scenicOptions.Rds")
+```
+
+
+```{r}
+# Export:
+export2scope(scenicOptions, exprMat)
+```
+

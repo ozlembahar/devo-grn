@@ -1,0 +1,172 @@
+---
+title: "SCENIC"
+author: "Özlem Bahar"
+date: "6/9/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_knit$set(root.dir = '/SCENIC_NBs')
+knitr::opts_chunk$set(echo = TRUE)
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::version()
+## Required
+#BiocManager::install(c("AUCell", "RcisTarget"))
+#BiocManager::install(c("GENIE3")) # Optional. Can be replaced by GRNBoost
+
+require(AUCell)
+#require(RcisTarget)
+require(GENIE3)
+require(zoo)
+require(mixtools)
+require(rbokeh)
+require(DT)
+require(NMF)
+require(ComplexHeatmap)
+require(R2HTML)
+require(Rtsne)
+require(doMC)
+require(doRNG)
+require(SCopeLoomR)
+require(SCENIC)
+require(Seurat)
+require(miceadds)
+require(SingleCellExperiment)
+require(pheatmap)
+```
+## Download the species-specific databases for RcisTarget (the motif rankings). The links to all the available databases are available in https://resources.aertslab.org/cistarget/.
+
+```{r}
+ dbFiles <- c("https://resources.aertslab.org/cistarget/databases/drosophila_melanogaster/dm6/flybase_r6.02/mc8nr/gene_based/dm6-5kb-upstream-full-tx-11species.mc8nr.feather")
+ dir.create("cisTarget_databases"); setwd("cisTarget_databases") # if needed
+ for(featherURL in dbFiles)
+ {   download.file(featherURL, destfile=basename(featherURL)) # saved in current dir
+ }
+# mc8nr: Motif collection version 8: 20k motifs
+```
+
+##Upload the species-specific databases for RcisTarget
+```{r}
+dbFiles <- importRankings("scenic_databases/dm6-5kb-upstream-full-tx-11species.mc8nr.feather")
+```
+##Formating the input
+
+Retrieve the expression matrix and cell metadata (the function name depends on the object type or package).
+```{r}
+# Read the final R object and retrieve the expression matrix and cell metadata
+#load .RDS object 
+vnc_seurat<- readRDS(file="dpn.nb.clusters_list.rds")
+DefaultAssay(vnc_seurat) <- 'RNA'
+vnc_seurat <- NormalizeData(vnc_seurat)
+exprMat <- vnc_seurat@assays$RNA@data
+```
+
+## create the cellInfo 
+```{r}
+cellInfo <- data.frame(CellType=Idents(vnc_seurat))
+cellInfo$nGene <- colSums(exprMat>0)
+cellInfo$nUMI <- vnc_seurat@meta.data$nUMI
+cbind(table(cellInfo$CellType))
+head(cellInfo)
+```
+
+```{r}
+#dir.create("int")
+cellInfo <- data.frame(cellInfo)
+cbind(table(cellInfo$CellType))
+saveRDS(cellInfo, file="int/cellInfo.Rds")
+#cellInfo <- readRDS(file="int/cellInfo.Rds")
+```
+
+```{r, fig.height=5}
+# Color to assign to the variables (same format as for NMF::aheatmap)
+colVars <- list(CellType=c("7-4"="#F8766D",
+                           "7-1"="#E58700",
+                           "5-6"="#C99800", 
+                           "5-3"="#A3A500", 
+                           "5-2"="#6BB100",
+                           "6-2"="#00BA38",
+                           "4-2"="#00BF7D",
+                           "3-5"="#00C0AF",
+                           "2-5"="#00BCD8",
+                           "3-2"="#00B0F6",
+                           "1-2"="#619CFF",
+                           "1-1"="#B983FF",
+                           "MG"="#E76BF3",
+                            "2-4"="#FD61D1",
+                           "5-4"="#FF67A4"))
+
+colVars$CellType <- colVars$CellType[intersect(names(colVars$CellType), cellInfo$CellType)]
+#saveRDS(colVars, file="int/colVars.Rds")
+plot.new(); legend(0,1, fill=colVars$CellType, legend=names(colVars$CellType))
+```
+
+```{r}
+### Initialize settings
+library(SCENIC)
+org <- "dmel" 
+dbDir <- "scenic_databases/" # RcisTarget databases location
+myDatasetTitle <- "SCENIC_NBs" # choose a name for your analysis
+data(defaultDbNames)
+dbs <- defaultDbNames[[org]]
+scenicOptions <- initializeScenic(org=org, dbDir=dbDir, dbs=dbs, datasetTitle=myDatasetTitle, nCores=10) 
+
+# Databases:
+scenicOptions@settings$dbs <- c("dm6-5kb-mc8nr"="dm6-5kb-upstream-full-tx-11species.mc8nr.feather")
+#scenicOptions@settings$db_mcVersion <- "v8"
+scenicOptions@inputDatasetInfo$cellInfo <- "int/cellInfo.Rds"
+scenicOptions@inputDatasetInfo$colVars <- "int/colVars.Rds"
+
+# Save to use at a later time...
+saveRDS(scenicOptions, file="int/scenicOptions.Rds") 
+```
+
+```{r}
+# Adjust the minimum according to the dataset
+genesKept <- geneFiltering(as.matrix(exprMat), scenicOptions=scenicOptions,
+                           minCountsPerGene=3*.01*ncol(exprMat),
+                           minSamples=ncol(exprMat)*.01)
+```
+
+Check whether any known relevant genes are filtered-out (if any relevant gene is missing, double-check whether the filters are appropriate)
+
+```{r}
+interestingGenes <- c("en", "wg", "gsb", "hh", "Dr", "ind", "vnd")
+# any missing? wg is missing from the raw data :( so that's expected
+interestingGenes[which(!interestingGenes %in% genesKept)]
+```
+Filter the expression matrix to contain only these 5425 genes. This matrix is now ready for the co-expression analysis.
+
+exprMat will not be used for the co-expression analysis.
+```{r}
+exprMat_filtered <- exprMat[genesKept, ]
+dim(exprMat_filtered)
+```
+ 
+## Correlation matrix
+
+GENIE3/GRNBoost can detect both positive and negative associations. In order to distinguish potential activation from repression, we will split the targets into positive- and negative-correlated targets (i.e. Spearman correlation between the TF and the potential target).
+
+Calculate the correlation: 
+```{r}
+runCorrelation(as.matrix(exprMat_filtered), scenicOptions)
+```
+## Run GENIE3
+
+Inputs include an expression matrix and a list of candidate regulators.
+runGenie3 uses the TFs available in Rcistarget databases as candidate regulators.
+
+```{r}
+require(GENIE3)
+# Run GENIE3
+runGenie3(as.matrix(exprMat_filtered), scenicOptions)
+```
+
+
+
+
+
+
+
+
+
